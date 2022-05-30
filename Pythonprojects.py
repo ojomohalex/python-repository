@@ -4,7 +4,7 @@ Your module description
 
 Services = [] #create empty list
 
-Services.append("EC2") #Adding items to the list. changes
+Services.append("EC2") #Adding items to the list
 Services.append("S3")
 Services.append("Lamda")
 Services.append("DYnamo DB")
