@@ -4,6 +4,7 @@ add 10 or more items to the table
 Use boto3 and Python to scan the DynamoDB table.
 """
 
+
 import boto3
 
 client = boto3.resource('dynamodb') 
