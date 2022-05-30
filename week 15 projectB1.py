@@ -1,34 +1,43 @@
 """
 Create a DynamoDB table for something of your choosing 
 
-add 10 or more items to the table
-
-Use boto3 and Python to scan the DynamoDB table.
-
 """
 import boto3
 
-table = boto3.client("dynamodb", region_name='us-east-1')
-
-Game = table.create_table(TableName='Game',
-        KeySchema=[
-            {'AttributeName': 'Title','KeyType': 'HASH'},  # Partition Key
-            
-            {'AttributeName': 'Genre','KeyType': 'RANGE'}],  # Sort Key
-        
-            AttributeDefinitions=[
-                {'AttributeName': 'Title','AttributeType': 'N'},
-                
-                {'AttributeName': 'Genre','AttributeType': 'S'}
-            ],
-            
-            ProvisionedThroughput={
-            'ReadCapacityUnits': 10,
-            'WriteCapacityUnits': 10}
-            )
-print(Game)
+dynamodb = boto3.resource('dynamodb', region_name='us-east-1') #set client to a variable 
 
 
+#invoke pthon to create a a table 
+table = dynamodb.create_table(
+    TableName='Cars',
+    KeySchema=[
+        {
+            'AttributeName': 'year',
+            'KeyType': 'HASH'  #Partition key
+        },
+        {
+            'AttributeName': 'title',
+            'KeyType': 'RANGE'  #Sort key
+        }
+    ],
+    AttributeDefinitions=[
+        {
+            'AttributeName': 'year',
+            'AttributeType': 'S'
+        },
+        {
+            'AttributeName': 'title',
+            'AttributeType': 'S'
+        },
+
+    ],
+    ProvisionedThroughput={
+        'ReadCapacityUnits': 10, #adding how many items the table will read
+        'WriteCapacityUnits': 10
+    }
+)
+
+print("Table status:", table.table_status)
 
 
 
