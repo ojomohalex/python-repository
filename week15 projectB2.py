@@ -76,12 +76,6 @@ input10 = {'year': '2019',
 	
 response = table.put_item(Item=input10)
 	
-	
-from boto3.dynamodb.conditions import Key #query items based on year
-response = table.query(
-    KeyConditionExpression=Key('year').eq('2016')
-)
-
 
 print(response)
 
